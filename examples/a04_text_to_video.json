@@ -1,0 +1,189 @@
+{
+  "state": true,
+  "manifests": [
+    {
+      "id": "urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821",
+      "claim_version": 2,
+      "title": "a04_text_to_video.mp4",
+      "instanceId": "xmp.iid:76cbc4d9-c177-40fa-b7bf-c9018ffadb87",
+      "claimGenerator": null,
+      "claimGeneratorInfo": [
+        {
+          "name": "c2pa-ai-examples",
+          "version": "0.1.0",
+          "org.contentauth.c2pa_rs": "0.92.0-dev"
+        }
+      ],
+      "signatureInfo": {
+        "alg": "Ps256",
+        "issuer": "C2PA Test Signing Cert",
+        "common_name": "C2PA Signer",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153"
+      },
+      "assertions": {
+        "c2pa.actions.v2": {
+          "actions": [
+            {
+              "action": "c2pa.created",
+              "softwareAgent": {
+                "name": "Fabrikam Video Model",
+                "version": "1.0"
+              },
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia",
+              "description": "Generated from a text prompt"
+            }
+          ]
+        },
+        "c2pa.hash.bmff.v3": {
+          "exclusions": [
+            {
+              "xpath": "/uuid",
+              "data": [
+                {
+                  "offset": 8,
+                  "value": "2P7D1hsOSDySl1goh37EgQ=="
+                }
+              ]
+            },
+            {
+              "xpath": "/ftyp"
+            },
+            {
+              "xpath": "/mfra"
+            },
+            {
+              "xpath": "/free"
+            },
+            {
+              "xpath": "/skip"
+            }
+          ],
+          "alg": "sha256",
+          "hash": "CPCY0O/DZUlVJpAM9PIXbaxNFVSjgQNBCasszp5laV0=",
+          "name": "jumbf manifest"
+        }
+      },
+      "ingredients": [],
+      "credentials": [],
+      "thumbnail": null
+    }
+  ],
+  "manifestStore": {
+    "activeManifest": "urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821",
+    "manifests": {
+      "urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821": {
+        "label": "urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821",
+        "claim_version": 2,
+        "title": "a04_text_to_video.mp4",
+        "instanceId": "xmp.iid:76cbc4d9-c177-40fa-b7bf-c9018ffadb87",
+        "claimGenerator": null,
+        "claimGeneratorInfo": [
+          {
+            "name": "c2pa-ai-examples",
+            "version": "0.1.0",
+            "org.contentauth.c2pa_rs": "0.92.0-dev"
+          }
+        ],
+        "signatureInfo": {
+          "alg": "Ps256",
+          "issuer": "C2PA Test Signing Cert",
+          "common_name": "C2PA Signer",
+          "cert_serial_number": "720724073027128164015125666832722375746636448153"
+        },
+        "assertions": {
+          "c2pa.actions.v2": {
+            "actions": [
+              {
+                "action": "c2pa.created",
+                "softwareAgent": {
+                  "name": "Fabrikam Video Model",
+                  "version": "1.0"
+                },
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia",
+                "description": "Generated from a text prompt"
+              }
+            ]
+          },
+          "c2pa.hash.bmff.v3": {
+            "exclusions": [
+              {
+                "xpath": "/uuid",
+                "data": [
+                  {
+                    "offset": 8,
+                    "value": "2P7D1hsOSDySl1goh37EgQ=="
+                  }
+                ]
+              },
+              {
+                "xpath": "/ftyp"
+              },
+              {
+                "xpath": "/mfra"
+              },
+              {
+                "xpath": "/free"
+              },
+              {
+                "xpath": "/skip"
+              }
+            ],
+            "alg": "sha256",
+            "hash": "CPCY0O/DZUlVJpAM9PIXbaxNFVSjgQNBCasszp5laV0=",
+            "name": "jumbf manifest"
+          }
+        },
+        "ingredients": [],
+        "credentials": [],
+        "thumbnail": null
+      }
+    },
+    "validation_status": [
+      {
+        "code": "signingCredential.untrusted",
+        "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.signature",
+        "explanation": "signing certificate untrusted"
+      }
+    ],
+    "validation_results": {
+      "activeManifest": {
+        "success": [
+          {
+            "code": "claimSignature.insideValidity",
+            "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.signature",
+            "explanation": "claim signature valid"
+          },
+          {
+            "code": "claimSignature.validated",
+            "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.signature",
+            "explanation": "claim signature valid"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.assertions/c2pa.actions.v2",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.assertions/c2pa.hash.bmff.v3",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.bmff.v3"
+          },
+          {
+            "code": "assertion.bmffHash.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.assertions/c2pa.hash.bmff.v3",
+            "explanation": "BMFF hash valid"
+          }
+        ],
+        "informational": [],
+        "failure": [
+          {
+            "code": "signingCredential.untrusted",
+            "url": "self#jumbf=/c2pa/urn:c2pa:663e33ae-93b7-433b-96fc-203064ad4821/c2pa.signature",
+            "explanation": "signing certificate untrusted"
+          }
+        ]
+      }
+    },
+    "validation_state": "Valid"
+  }
+}

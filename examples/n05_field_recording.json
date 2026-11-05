@@ -1,0 +1,133 @@
+{
+  "state": true,
+  "manifests": [
+    {
+      "id": "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c",
+      "claim_version": 2,
+      "title": "n05_field_recording.wav",
+      "instanceId": "xmp.iid:94cac639-15f1-4eba-b23c-86c3ce1ac06e",
+      "claimGenerator": null,
+      "claimGeneratorInfo": [
+        {
+          "name": "c2pa-ai-examples",
+          "version": "0.1.0",
+          "org.contentauth.c2pa_rs": "0.92.0-dev"
+        }
+      ],
+      "signatureInfo": {
+        "alg": "Ps256",
+        "issuer": "C2PA Test Signing Cert",
+        "common_name": "C2PA Signer",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153"
+      },
+      "assertions": {
+        "c2pa.actions.v2": {
+          "actions": [
+            {
+              "action": "c2pa.created",
+              "softwareAgent": {
+                "name": "Northwind Recorder",
+                "version": "1.4"
+              },
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
+              "description": "Recorded on location"
+            }
+          ]
+        }
+      },
+      "ingredients": [],
+      "credentials": [],
+      "thumbnail": null
+    }
+  ],
+  "manifestStore": {
+    "activeManifest": "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c",
+    "manifests": {
+      "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c": {
+        "label": "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c",
+        "claim_version": 2,
+        "title": "n05_field_recording.wav",
+        "instanceId": "xmp.iid:94cac639-15f1-4eba-b23c-86c3ce1ac06e",
+        "claimGenerator": null,
+        "claimGeneratorInfo": [
+          {
+            "name": "c2pa-ai-examples",
+            "version": "0.1.0",
+            "org.contentauth.c2pa_rs": "0.92.0-dev"
+          }
+        ],
+        "signatureInfo": {
+          "alg": "Ps256",
+          "issuer": "C2PA Test Signing Cert",
+          "common_name": "C2PA Signer",
+          "cert_serial_number": "720724073027128164015125666832722375746636448153"
+        },
+        "assertions": {
+          "c2pa.actions.v2": {
+            "actions": [
+              {
+                "action": "c2pa.created",
+                "softwareAgent": {
+                  "name": "Northwind Recorder",
+                  "version": "1.4"
+                },
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
+                "description": "Recorded on location"
+              }
+            ]
+          }
+        },
+        "ingredients": [],
+        "credentials": [],
+        "thumbnail": null
+      }
+    },
+    "validation_status": [
+      {
+        "code": "signingCredential.untrusted",
+        "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+        "explanation": "signing certificate untrusted"
+      }
+    ],
+    "validation_results": {
+      "activeManifest": {
+        "success": [
+          {
+            "code": "claimSignature.insideValidity",
+            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+            "explanation": "claim signature valid"
+          },
+          {
+            "code": "claimSignature.validated",
+            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+            "explanation": "claim signature valid"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.assertions/c2pa.actions.v2",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.assertions/c2pa.hash.data",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
+          },
+          {
+            "code": "assertion.dataHash.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.assertions/c2pa.hash.data",
+            "explanation": "data hash valid"
+          }
+        ],
+        "informational": [],
+        "failure": [
+          {
+            "code": "signingCredential.untrusted",
+            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+            "explanation": "signing certificate untrusted"
+          }
+        ]
+      }
+    },
+    "validation_state": "Valid"
+  }
+}

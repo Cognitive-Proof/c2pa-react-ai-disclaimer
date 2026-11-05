@@ -1,0 +1,194 @@
+[
+  {
+    "file": "files/ai/a01_text_to_image.jpg",
+    "expected": "ai",
+    "description": "Text-to-image output; c2pa.created with trainedAlgorithmicMedia.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia",
+    "fixture": "a01_text_to_image.json"
+  },
+  {
+    "file": "files/ai/a02_text_to_image.png",
+    "expected": "ai",
+    "description": "Same as a01 in PNG.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia",
+    "fixture": "a02_text_to_image.json"
+  },
+  {
+    "file": "files/ai/a03_ai_then_cropped.jpg",
+    "expected": "ai",
+    "description": "Human crop of a01. The active manifest has no AI source type; the AI origin is only in the parent ingredient's manifest.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia",
+    "fixture": "a03_ai_then_cropped.json"
+  },
+  {
+    "file": "files/ai/a04_text_to_video.mp4",
+    "expected": "ai",
+    "description": "Text-to-video output in MP4.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia",
+    "fixture": "a04_text_to_video.json"
+  },
+  {
+    "file": "files/ai/a05_text_to_speech.wav",
+    "expected": "ai",
+    "description": "Synthetic speech in WAV.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia",
+    "fixture": "a05_text_to_speech.json"
+  },
+  {
+    "file": "files/no-ai/n01_camera_capture.jpg",
+    "expected": "no-ai",
+    "description": "Camera capture; c2pa.created with digitalCapture.",
+    "validationState": "Trusted",
+    "classifierReason": "created as digitalCapture",
+    "fixture": "n01_camera_capture.json"
+  },
+  {
+    "file": "files/no-ai/n02_capture_cropped_and_adjusted.jpg",
+    "expected": "no-ai",
+    "description": "n01 cropped and colour-adjusted; only non-generative edits.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture",
+    "fixture": "n02_capture_cropped_and_adjusted.json"
+  },
+  {
+    "file": "files/no-ai/n03_digital_illustration.png",
+    "expected": "no-ai",
+    "description": "Hand-made illustration; digitalCreation.",
+    "validationState": "Trusted",
+    "classifierReason": "created as digitalCreation",
+    "fixture": "n03_digital_illustration.json"
+  },
+  {
+    "file": "files/no-ai/n04_hdr_composite_capture.jpg",
+    "expected": "no-ai",
+    "description": "Several captures merged (HDR); compositeCapture.",
+    "validationState": "Trusted",
+    "classifierReason": "created as compositeCapture",
+    "fixture": "n04_hdr_composite_capture.json"
+  },
+  {
+    "file": "files/no-ai/n05_field_recording.wav",
+    "expected": "no-ai",
+    "description": "Audio capture; digitalCapture.",
+    "validationState": "Trusted",
+    "classifierReason": "created as digitalCapture",
+    "fixture": "n05_field_recording.json"
+  },
+  {
+    "file": "files/no-ai/n06_procedural_fractal.png",
+    "expected": "no-ai",
+    "description": "Edge case: algorithmicMedia is algorithmic but, per IPTC, not based on sampled training data, so it is not AI.",
+    "validationState": "Trusted",
+    "classifierReason": "created as algorithmicMedia",
+    "fixture": "n06_procedural_fractal.json"
+  },
+  {
+    "file": "files/includes-ai/i01_generative_fill.jpg",
+    "expected": "includes-ai",
+    "description": "Camera photo (n01) with a region replaced by generative fill; c2pa.edited with compositeWithTrainedAlgorithmicMedia.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i01_generative_fill.json"
+  },
+  {
+    "file": "files/includes-ai/i02_ai_element_placed.jpg",
+    "expected": "includes-ai",
+    "description": "Camera photo with an AI image (a01) placed into it. No AI source type on any action; the AI is only in the componentOf ingredient's manifest.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; component: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia",
+    "fixture": "i02_ai_element_placed.json"
+  },
+  {
+    "file": "files/includes-ai/i03_created_with_ai_elements.jpg",
+    "expected": "includes-ai",
+    "description": "Created directly as compositeWithTrainedAlgorithmicMedia.",
+    "validationState": "Trusted",
+    "classifierReason": "created as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i03_created_with_ai_elements.json"
+  },
+  {
+    "file": "files/includes-ai/i04_generative_fill_then_cropped.jpg",
+    "expected": "includes-ai",
+    "description": "i01 cropped. The AI edit is one manifest back in the history.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'i01_generative_fill.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i04_generative_fill_then_cropped.json"
+  },
+  {
+    "file": "files/unknown/u01_no_manifest.jpg",
+    "expected": "unknown",
+    "description": "No C2PA manifest at all.",
+    "validationState": "unreadable: no JUMBF data found",
+    "classifierReason": "no readable C2PA manifest",
+    "fixture": "u01_no_manifest.json"
+  },
+  {
+    "file": "files/unknown/u02_ai_with_manifest_stripped.jpg",
+    "expected": "unknown",
+    "description": "a01 re-encoded, which drops the manifest. Ground truth is AI, but nothing in the file can show it.",
+    "validationState": "unreadable: no JUMBF data found",
+    "classifierReason": "no readable C2PA manifest",
+    "fixture": "u02_ai_with_manifest_stripped.json"
+  },
+  {
+    "file": "files/unknown/u03_v1_created_without_source_type.jpg",
+    "expected": "unknown",
+    "description": "Valid legacy (v1) claim whose c2pa.created has no digitalSourceType.",
+    "validationState": "Trusted",
+    "classifierReason": "created with no digitalSourceType",
+    "fixture": "u03_v1_created_without_source_type.json"
+  },
+  {
+    "file": "files/unknown/u04_edited_from_unsigned_parent.jpg",
+    "expected": "unknown",
+    "description": "Signed edit of a parent that has no manifest, so the origin is unknown.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'photo-unsigned.jpg' has no C2PA manifest",
+    "fixture": "u04_edited_from_unsigned_parent.json"
+  },
+  {
+    "file": "files/unknown/u05_tampered_capture.jpg",
+    "expected": "unknown",
+    "description": "n01 with image bytes altered after signing; the manifest claims digitalCapture but the hard binding fails.",
+    "validationState": "Invalid",
+    "classifierReason": "active manifest failed validation: assertion.dataHash.mismatch",
+    "fixture": "u05_tampered_capture.json"
+  },
+  {
+    "file": "files/unknown/u06_remote_manifest_unavailable.jpg",
+    "expected": "unknown",
+    "description": "Points to a remote manifest (XMP dcterms:provenance) that was never published, and embeds none.",
+    "validationState": "unreadable: must fetch remote manifests from url https://northwindtraders.com/c2pa/manifests/u06-not-published.c2pa",
+    "classifierReason": "no readable C2PA manifest",
+    "fixture": "u06_remote_manifest_unavailable.json"
+  },
+  {
+    "file": "files/unknown/u07_composite_synthetic.jpg",
+    "expected": "unknown",
+    "description": "compositeSynthetic says synthetic elements are present, not whether a trained model made them.",
+    "validationState": "Trusted",
+    "classifierReason": "created as compositeSynthetic",
+    "fixture": "u07_composite_synthetic.json"
+  },
+  {
+    "file": "files/unknown/u08_algorithmically_enhanced.jpg",
+    "expected": "unknown",
+    "description": "Camera photo with algorithmicallyEnhanced edits; the type does not say whether the algorithm was a trained model.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited as algorithmicallyEnhanced",
+    "fixture": "u08_algorithmically_enhanced.json"
+  },
+  {
+    "file": "files/unknown/u09_edited_from_tampered_parent.jpg",
+    "expected": "unknown",
+    "description": "Valid signed crop of u05; the parent's claim of digitalCapture is untrustworthy because its own validation failed.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'u05_tampered_capture.jpg' failed validation: assertion.dataHash.mismatch",
+    "fixture": "u09_edited_from_tampered_parent.json"
+  }
+]

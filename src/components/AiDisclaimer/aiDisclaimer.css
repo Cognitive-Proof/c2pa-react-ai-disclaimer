@@ -1,0 +1,70 @@
+.c2pa-ai-disclaimer {
+  --c2pa-ai-fg: #374151;
+  --c2pa-ai-bg: #f3f4f6;
+  --c2pa-ai-border: #e5e7eb;
+  font-family: inherit;
+  font-size: 13px;
+  color: #374151;
+}
+
+.c2pa-ai-disclaimer--ai {
+  --c2pa-ai-fg: #6d28d9;
+  --c2pa-ai-bg: #f5f3ff;
+  --c2pa-ai-border: #ddd6fe;
+}
+
+.c2pa-ai-disclaimer--includes-ai {
+  --c2pa-ai-fg: #b45309;
+  --c2pa-ai-bg: #fffbeb;
+  --c2pa-ai-border: #fde68a;
+}
+
+.c2pa-ai-disclaimer--no-ai {
+  --c2pa-ai-fg: #047857;
+  --c2pa-ai-bg: #ecfdf5;
+  --c2pa-ai-border: #a7f3d0;
+}
+
+.c2pa-ai-disclaimer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--c2pa-ai-border);
+  background: var(--c2pa-ai-bg);
+  color: var(--c2pa-ai-fg);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+div.c2pa-ai-disclaimer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--c2pa-ai-border);
+  border-radius: 10px;
+}
+
+.c2pa-ai-disclaimer-description {
+  margin: 0;
+}
+
+.c2pa-ai-disclaimer-details {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.c2pa-ai-disclaimer-details summary {
+  cursor: pointer;
+}
+
+.c2pa-ai-disclaimer-details ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  word-break: break-word;
+}
