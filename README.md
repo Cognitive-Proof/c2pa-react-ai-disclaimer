@@ -88,7 +88,7 @@ npm run lint
 npm run build
 ```
 
-`c2pa-react-component-types` is linked with yalc during development. Publish it to npm and switch the dependency back to a version number before releasing.
+Shared prop types come from [`c2pa-react-component-types`](https://www.npmjs.com/package/c2pa-react-component-types) on npm. To try unreleased type changes, link the sibling repo with `yalc add c2pa-react-component-types`, and switch back to the npm version before releasing.
 
 ## License
 

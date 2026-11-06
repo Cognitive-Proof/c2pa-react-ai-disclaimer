@@ -80,6 +80,6 @@
     "vitest": "^4.1.5"
   },
   "dependencies": {
-    "c2pa-react-component-types": "file:.yalc/c2pa-react-component-types"
+    "c2pa-react-component-types": "^0.1.8"
   }
 }
