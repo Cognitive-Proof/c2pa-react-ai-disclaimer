@@ -1,6 +1,6 @@
 {
   "name": "c2pa-react-ai-disclaimer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A React plugin for c2pa-react-component that shows whether AI was used to make the content, from its C2PA provenance.",
   "type": "module",
   "main": "./dist/c2pa-react-ai-disclaimer.umd.cjs",
