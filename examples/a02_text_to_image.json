@@ -2,10 +2,10 @@
   "state": true,
   "manifests": [
     {
-      "id": "urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c",
+      "id": "urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88",
       "claim_version": 2,
       "title": "a02_text_to_image.png",
-      "instanceId": "xmp.iid:c099c557-de6f-4e3f-8d71-7181b2be9116",
+      "instanceId": "xmp.iid:4aed3bcc-2148-41ee-9d09-e1a39fc5344a",
       "claimGenerator": null,
       "claimGeneratorInfo": [
         {
@@ -32,7 +32,8 @@
               "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia",
               "description": "Generated from a text prompt"
             }
-          ]
+          ],
+          "allActionsIncluded": true
         }
       },
       "ingredients": [],
@@ -41,13 +42,13 @@
     }
   ],
   "manifestStore": {
-    "activeManifest": "urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c",
+    "activeManifest": "urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88",
     "manifests": {
-      "urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c": {
-        "label": "urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c",
+      "urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88": {
+        "label": "urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88",
         "claim_version": 2,
         "title": "a02_text_to_image.png",
-        "instanceId": "xmp.iid:c099c557-de6f-4e3f-8d71-7181b2be9116",
+        "instanceId": "xmp.iid:4aed3bcc-2148-41ee-9d09-e1a39fc5344a",
         "claimGenerator": null,
         "claimGeneratorInfo": [
           {
@@ -74,7 +75,8 @@
                 "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia",
                 "description": "Generated from a text prompt"
               }
-            ]
+            ],
+            "allActionsIncluded": true
           }
         },
         "ingredients": [],
@@ -85,7 +87,7 @@
     "validation_status": [
       {
         "code": "signingCredential.untrusted",
-        "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.signature",
+        "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.signature",
         "explanation": "signing certificate untrusted"
       }
     ],
@@ -94,32 +96,32 @@
         "success": [
           {
             "code": "claimSignature.insideValidity",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.signature",
             "explanation": "claim signature valid"
           },
           {
             "code": "claimSignature.validated",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.signature",
             "explanation": "claim signature valid"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.assertions/c2pa.actions.v2",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.assertions/c2pa.actions.v2",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.assertions/c2pa.thumbnail.claim",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.assertions/c2pa.thumbnail.claim",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.assertions/c2pa.hash.data",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
           },
           {
             "code": "assertion.dataHash.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.assertions/c2pa.hash.data",
             "explanation": "data hash valid"
           }
         ],
@@ -127,7 +129,7 @@
         "failure": [
           {
             "code": "signingCredential.untrusted",
-            "url": "self#jumbf=/c2pa/urn:c2pa:31146bfe-43b3-457a-8328-4b8b6cee649c/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a828183f-a68e-49a2-886b-927f3731bf88/c2pa.signature",
             "explanation": "signing certificate untrusted"
           }
         ]

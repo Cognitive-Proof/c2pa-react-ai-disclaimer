@@ -2,10 +2,10 @@
   "state": true,
   "manifests": [
     {
-      "id": "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c",
+      "id": "urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c",
       "claim_version": 2,
       "title": "n05_field_recording.wav",
-      "instanceId": "xmp.iid:94cac639-15f1-4eba-b23c-86c3ce1ac06e",
+      "instanceId": "xmp.iid:dbb1ddee-48db-4db5-92ff-32d3f73668a6",
       "claimGenerator": null,
       "claimGeneratorInfo": [
         {
@@ -32,7 +32,8 @@
               "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
               "description": "Recorded on location"
             }
-          ]
+          ],
+          "allActionsIncluded": true
         }
       },
       "ingredients": [],
@@ -41,13 +42,13 @@
     }
   ],
   "manifestStore": {
-    "activeManifest": "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c",
+    "activeManifest": "urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c",
     "manifests": {
-      "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c": {
-        "label": "urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c",
+      "urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c": {
+        "label": "urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c",
         "claim_version": 2,
         "title": "n05_field_recording.wav",
-        "instanceId": "xmp.iid:94cac639-15f1-4eba-b23c-86c3ce1ac06e",
+        "instanceId": "xmp.iid:dbb1ddee-48db-4db5-92ff-32d3f73668a6",
         "claimGenerator": null,
         "claimGeneratorInfo": [
           {
@@ -74,7 +75,8 @@
                 "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
                 "description": "Recorded on location"
               }
-            ]
+            ],
+            "allActionsIncluded": true
           }
         },
         "ingredients": [],
@@ -85,7 +87,7 @@
     "validation_status": [
       {
         "code": "signingCredential.untrusted",
-        "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+        "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.signature",
         "explanation": "signing certificate untrusted"
       }
     ],
@@ -94,27 +96,27 @@
         "success": [
           {
             "code": "claimSignature.insideValidity",
-            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.signature",
             "explanation": "claim signature valid"
           },
           {
             "code": "claimSignature.validated",
-            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.signature",
             "explanation": "claim signature valid"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.assertions/c2pa.actions.v2",
+            "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.assertions/c2pa.actions.v2",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.assertions/c2pa.hash.data",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
           },
           {
             "code": "assertion.dataHash.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.assertions/c2pa.hash.data",
             "explanation": "data hash valid"
           }
         ],
@@ -122,7 +124,7 @@
         "failure": [
           {
             "code": "signingCredential.untrusted",
-            "url": "self#jumbf=/c2pa/urn:c2pa:f1041afd-72aa-4a29-9351-75dce5d0973c/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:2df0ae1a-0bd0-454d-8441-960e7ccd8e3c/c2pa.signature",
             "explanation": "signing certificate untrusted"
           }
         ]

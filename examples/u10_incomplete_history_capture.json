@@ -1,0 +1,140 @@
+{
+  "state": true,
+  "manifests": [
+    {
+      "id": "urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c",
+      "claim_version": 2,
+      "title": "u10_incomplete_history_capture.jpg",
+      "instanceId": "xmp.iid:4362bff0-e5fc-4166-b01e-b78feadca973",
+      "claimGenerator": null,
+      "claimGeneratorInfo": [
+        {
+          "name": "c2pa-ai-examples",
+          "version": "0.1.0",
+          "org.contentauth.c2pa_rs": "0.92.0-dev"
+        }
+      ],
+      "signatureInfo": {
+        "alg": "Ps256",
+        "issuer": "C2PA Test Signing Cert",
+        "common_name": "C2PA Signer",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153"
+      },
+      "assertions": {
+        "c2pa.actions.v2": {
+          "actions": [
+            {
+              "action": "c2pa.created",
+              "softwareAgent": {
+                "name": "Northwind Camera Firmware",
+                "version": "2.0.1"
+              },
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
+              "description": "Captured by camera"
+            }
+          ],
+          "allActionsIncluded": false
+        }
+      },
+      "ingredients": [],
+      "credentials": [],
+      "thumbnail": null
+    }
+  ],
+  "manifestStore": {
+    "activeManifest": "urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c",
+    "manifests": {
+      "urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c": {
+        "label": "urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c",
+        "claim_version": 2,
+        "title": "u10_incomplete_history_capture.jpg",
+        "instanceId": "xmp.iid:4362bff0-e5fc-4166-b01e-b78feadca973",
+        "claimGenerator": null,
+        "claimGeneratorInfo": [
+          {
+            "name": "c2pa-ai-examples",
+            "version": "0.1.0",
+            "org.contentauth.c2pa_rs": "0.92.0-dev"
+          }
+        ],
+        "signatureInfo": {
+          "alg": "Ps256",
+          "issuer": "C2PA Test Signing Cert",
+          "common_name": "C2PA Signer",
+          "cert_serial_number": "720724073027128164015125666832722375746636448153"
+        },
+        "assertions": {
+          "c2pa.actions.v2": {
+            "actions": [
+              {
+                "action": "c2pa.created",
+                "softwareAgent": {
+                  "name": "Northwind Camera Firmware",
+                  "version": "2.0.1"
+                },
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
+                "description": "Captured by camera"
+              }
+            ],
+            "allActionsIncluded": false
+          }
+        },
+        "ingredients": [],
+        "credentials": [],
+        "thumbnail": null
+      }
+    },
+    "validation_status": [
+      {
+        "code": "signingCredential.untrusted",
+        "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.signature",
+        "explanation": "signing certificate untrusted"
+      }
+    ],
+    "validation_results": {
+      "activeManifest": {
+        "success": [
+          {
+            "code": "claimSignature.insideValidity",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.signature",
+            "explanation": "claim signature valid"
+          },
+          {
+            "code": "claimSignature.validated",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.signature",
+            "explanation": "claim signature valid"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.assertions/c2pa.actions.v2",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.assertions/c2pa.thumbnail.claim",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.assertions/c2pa.hash.data",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
+          },
+          {
+            "code": "assertion.dataHash.match",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.assertions/c2pa.hash.data",
+            "explanation": "data hash valid"
+          }
+        ],
+        "informational": [],
+        "failure": [
+          {
+            "code": "signingCredential.untrusted",
+            "url": "self#jumbf=/c2pa/urn:c2pa:e3cb26bf-aefc-41d5-9000-6b129673c51c/c2pa.signature",
+            "explanation": "signing certificate untrusted"
+          }
+        ]
+      }
+    },
+    "validation_state": "Valid"
+  }
+}

@@ -18,14 +18,29 @@ const settings = join(examplesRepo, 'settings/c2pa-test-settings.json')
 const labels = JSON.parse(readFileSync(join(examplesRepo, 'labels.json'), 'utf8'))
 mkdirSync(outDir, { recursive: true })
 
+function c2patool(file, ...extra) {
+  const args = existsSync(settings) ? ['--settings', settings, file, ...extra] : [file, ...extra]
+  return JSON.parse(execFileSync('c2patool', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }))
+}
+
 function readStore(file) {
-  const args = existsSync(settings) ? ['--settings', settings, file] : [file]
+  let store
   try {
-    return JSON.parse(execFileSync('c2patool', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }))
+    store = c2patool(file)
   } catch (err) {
     // No manifest, or one that can't be read (e.g. an unreachable remote manifest).
     return { error: String(err.stderr ?? err.message).trim() }
   }
+  // c2patool 0.27 leaves an ingredient's own digitalSourceType out of its JSON, though
+  // c2pa-rs Reader::json() includes it as digital_source_type. Copy it from the raw assertion.
+  const detailed = c2patool(file, '--detailed')
+  for (const [label, m] of Object.entries(store.manifests ?? {})) {
+    for (const ing of m.ingredients ?? []) {
+      const dst = detailed.manifests?.[label]?.assertion_store?.[ing.label]?.digitalSourceType
+      if (dst && !ing.digital_source_type) ing.digital_source_type = dst
+    }
+  }
+  return store
 }
 
 function assertionRecord(assertions = []) {

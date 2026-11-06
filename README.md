@@ -57,20 +57,23 @@ classifyAi(outcome);
 
 ## How It Decides
 
-This is a port of the reference classifier in [c2pa-ai-examples](../c2pa-ai-examples) (`src/classify.rs`). It walks the ingredient history:
+This is a port of the reference classifier in [c2pa-ai-examples](../c2pa-ai-examples) (`src/classify.rs`). The four categories are an application policy, not something the C2PA specification prescribes. It walks the ingredient history:
 
 1. No readable manifest, or a validation failure in the active manifest → **unknown**.
-2. The origin comes from the `digitalSourceType` on `c2pa.created`, or from the parent ingredient on `c2pa.opened`. The parent is classified recursively.
-3. An AI origin (`trainedAlgorithmicMedia`) → **ai**, whatever human edits follow.
-4. Otherwise, any `compositeWithTrainedAlgorithmicMedia` or `trainedAlgorithmicMedia` action, or any AI `componentOf` ingredient → **includes-ai**.
-5. Otherwise, an unknown origin, an unclear source type (`compositeSynthetic`, `algorithmicallyEnhanced`, …) or an unknown component → **unknown**.
-6. Anything else → **no-ai**.
+2. Action templates are merged into each action first: the `*` template, then same-named templates, then the action's own fields.
+3. The origin comes from the `digitalSourceType` on `c2pa.created`, or from the parent ingredient on `c2pa.opened`, classified recursively. An update manifest with no actions inherits its parent. An ingredient without a manifest can still declare its own source type.
+4. An AI origin whose current components are all AI, or an `empty` origin built only from AI components → **ai**.
+5. Otherwise, an AI origin, an AI action, an AI component, or a `c2pa.ai-disclosure` assertion → **includes-ai**. Components removed by `c2pa.deleted` don't count.
+6. Otherwise, an unknown origin, an unclear source type (`compositeSynthetic`, `algorithmicallyEnhanced`, `screenCapture`, `virtualRecording`, …), an unknown component, or a history that may be incomplete (no `c2pa.actions.v2` with `allActionsIncluded: true`) → **unknown**.
+7. Anything else → **no-ai**.
 
-The classifier ignores `signingCredential.untrusted`. Trust comes from the reader's trust list and says nothing about whether AI was used.
+Source types must be full IPTC or C2PA URIs. The classifier ignores `signingCredential.untrusted`. Trust comes from the reader's trust list and says nothing about whether AI was used.
 
 ## Test Fixtures
 
-`examples/` holds the 24 test files from `c2pa-ai-examples`, converted to `VerificationOutcome` JSON. `examples/labels.json` gives each one's expected verdict. The tests check both the verdict and the reason against the reference classifier, word for word.
+`examples/` holds the 36 test files from `c2pa-ai-examples`, converted to `VerificationOutcome` JSON. `examples/labels.json` gives each one's expected verdict. The tests check both the verdict and the reason against the reference classifier, word for word.
+
+Where `labels.json` records a `knownSdkIssue` (a validation code c2pa-rs reports in error, such as `assertion.action.malformed` on a07), the tests check that the file gets the SDK's verdict as-is, and the expected verdict once that code is set aside.
 
 To regenerate them, run this with `c2patool` on your PATH and the examples repo checked out next to this one:
 

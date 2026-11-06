@@ -2,11 +2,11 @@
   "state": true,
   "manifests": [
     {
-      "id": "urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae",
-      "claim_version": 1,
-      "title": "u03_v1_created_without_source_type.jpg",
-      "instanceId": "xmp.iid:3000227a-64b6-405a-ad7d-75fbf5423ded",
-      "claimGenerator": "c2pa-ai-examples/0.1.0",
+      "id": "urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c",
+      "claim_version": 2,
+      "title": "u12_virtual_recording.jpg",
+      "instanceId": "xmp.iid:31eaf796-99be-44e5-95d8-7ed564e4081d",
+      "claimGenerator": null,
       "claimGeneratorInfo": [
         {
           "name": "c2pa-ai-examples",
@@ -25,9 +25,15 @@
           "actions": [
             {
               "action": "c2pa.created",
-              "softwareAgent": "Northwind Photo Editor 12.3"
+              "softwareAgent": {
+                "name": "Northwind Studio",
+                "version": "1.0"
+              },
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/virtualRecording",
+              "description": "Recording of a virtual set"
             }
-          ]
+          ],
+          "allActionsIncluded": true
         }
       },
       "ingredients": [],
@@ -36,14 +42,14 @@
     }
   ],
   "manifestStore": {
-    "activeManifest": "urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae",
+    "activeManifest": "urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c",
     "manifests": {
-      "urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae": {
-        "label": "urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae",
-        "claim_version": 1,
-        "title": "u03_v1_created_without_source_type.jpg",
-        "instanceId": "xmp.iid:3000227a-64b6-405a-ad7d-75fbf5423ded",
-        "claimGenerator": "c2pa-ai-examples/0.1.0",
+      "urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c": {
+        "label": "urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c",
+        "claim_version": 2,
+        "title": "u12_virtual_recording.jpg",
+        "instanceId": "xmp.iid:31eaf796-99be-44e5-95d8-7ed564e4081d",
+        "claimGenerator": null,
         "claimGeneratorInfo": [
           {
             "name": "c2pa-ai-examples",
@@ -62,9 +68,15 @@
             "actions": [
               {
                 "action": "c2pa.created",
-                "softwareAgent": "Northwind Photo Editor 12.3"
+                "softwareAgent": {
+                  "name": "Northwind Studio",
+                  "version": "1.0"
+                },
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/virtualRecording",
+                "description": "Recording of a virtual set"
               }
-            ]
+            ],
+            "allActionsIncluded": true
           }
         },
         "ingredients": [],
@@ -75,7 +87,7 @@
     "validation_status": [
       {
         "code": "signingCredential.untrusted",
-        "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.signature",
+        "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.signature",
         "explanation": "signing certificate untrusted"
       }
     ],
@@ -84,32 +96,32 @@
         "success": [
           {
             "code": "claimSignature.insideValidity",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.signature",
             "explanation": "claim signature valid"
           },
           {
             "code": "claimSignature.validated",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.signature",
             "explanation": "claim signature valid"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.assertions/c2pa.actions.v2",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.assertions/c2pa.actions.v2",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.assertions/c2pa.thumbnail.claim.jpeg",
-            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim.jpeg"
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.assertions/c2pa.thumbnail.claim",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.assertions/c2pa.hash.data",
             "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
           },
           {
             "code": "assertion.dataHash.match",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.assertions/c2pa.hash.data",
             "explanation": "data hash valid"
           }
         ],
@@ -117,7 +129,7 @@
         "failure": [
           {
             "code": "signingCredential.untrusted",
-            "url": "self#jumbf=/c2pa/urn:uuid:d803adca-23ae-4014-97dd-aea9d1d838ae/c2pa.signature",
+            "url": "self#jumbf=/c2pa/urn:c2pa:a58838f8-7757-49e6-b219-8cc378d1689c/c2pa.signature",
             "explanation": "signing certificate untrusted"
           }
         ]

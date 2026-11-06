@@ -12,11 +12,30 @@ function loadFixture(name: string): VerificationOutcome {
   return structuredClone(fixture)
 }
 
+interface Label {
+  fixture: string
+  expected: string
+  classifierReason: string
+  knownSdkIssue?: { code: string; sdkVerdict: string }
+}
+
+/** Drops a failure code that c2pa-rs reports in error, as the reference check does. */
+function setAside(outcome: VerificationOutcome, code: string): VerificationOutcome {
+  const results = outcome.manifestStore?.validation_results?.activeManifest
+  if (results) results.failure = results.failure.filter((f) => f.code !== code)
+  return outcome
+}
+
 describe('classifyAi against c2pa-ai-examples', () => {
-  it.each(labels.map((l) => [l.fixture, l.expected, l.classifierReason] as const))(
+  it.each((labels as Label[]).map((l) => [l.fixture, l.expected, l] as const))(
     '%s → %s',
-    (fixture, expected, reason) => {
-      const result = classifyAi(loadFixture(fixture))
+    (fixture, expected, { classifierReason: reason, knownSdkIssue }) => {
+      let outcome = loadFixture(fixture)
+      if (knownSdkIssue) {
+        expect(classifyAi(outcome).verdict).toBe(knownSdkIssue.sdkVerdict)
+        outcome = setAside(outcome, knownSdkIssue.code)
+      }
+      const result = classifyAi(outcome)
       expect(result.verdict).toBe(expected)
       // Fixtures without a manifest carry no reason we can match word for word.
       if (reason !== 'no readable C2PA manifest') expect(result.reason).toBe(reason)
