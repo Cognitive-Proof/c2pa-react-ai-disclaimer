@@ -1,5 +1,5 @@
 {
   "state": false,
   "manifests": [],
-  "error": "Error: No claim found"
+  "error": "Error: no JUMBF data found"
 }

@@ -1,0 +1,216 @@
+{
+  "state": true,
+  "manifests": [
+    {
+      "id": "urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609",
+      "claim_version": 2,
+      "title": "i19_video_with_ai_voice_track.mp4",
+      "instanceId": "xmp.iid:a8873ff0-e836-4a98-ae0b-88518b6e970c",
+      "claimGenerator": null,
+      "claimGeneratorInfo": [
+        {
+          "name": "c2pa-ai-examples",
+          "org.contentauth.c2pa_rs": "0.92.0-dev",
+          "version": "0.1.0"
+        }
+      ],
+      "signatureInfo": {
+        "alg": "Ps256",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153",
+        "common_name": "C2PA Signer",
+        "issuer": "C2PA Test Signing Cert"
+      },
+      "assertions": {
+        "c2pa.actions.v2": {
+          "actions": [
+            {
+              "action": "c2pa.created",
+              "description": "Recorded video",
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
+              "softwareAgent": {
+                "name": "Northwind Camera Firmware",
+                "version": "2.0.1"
+              }
+            },
+            {
+              "action": "c2pa.dubbed",
+              "description": "Replaced the audio track with synthetic speech",
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia",
+              "softwareAgent": {
+                "name": "Fabrikam Voice",
+                "version": "3.0"
+              }
+            }
+          ],
+          "allActionsIncluded": true
+        },
+        "c2pa.hash.bmff.v3": {
+          "alg": "sha256",
+          "exclusions": [
+            {
+              "data": [
+                {
+                  "offset": 8,
+                  "value": "b64'2P7D1hsOSDySl1goh37EgQ=='"
+                }
+              ],
+              "xpath": "/uuid"
+            },
+            {
+              "xpath": "/ftyp"
+            },
+            {
+              "xpath": "/mfra"
+            },
+            {
+              "xpath": "/free"
+            },
+            {
+              "xpath": "/skip"
+            }
+          ],
+          "hash": "b64'712kHw3N7mS8Q2XD5uWXlMGoJ3DKeGVEMdSEzZI084Q='",
+          "name": "jumbf manifest"
+        },
+        "c2pa.hash.bmff.v3__2": {}
+      },
+      "ingredients": [],
+      "credentials": [],
+      "thumbnail": null
+    }
+  ],
+  "manifestStore": {
+    "activeManifest": "urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609",
+    "manifests": {
+      "urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609": {
+        "label": "urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609",
+        "claim_version": 2,
+        "title": "i19_video_with_ai_voice_track.mp4",
+        "instanceId": "xmp.iid:a8873ff0-e836-4a98-ae0b-88518b6e970c",
+        "claimGenerator": null,
+        "claimGeneratorInfo": [
+          {
+            "name": "c2pa-ai-examples",
+            "org.contentauth.c2pa_rs": "0.92.0-dev",
+            "version": "0.1.0"
+          }
+        ],
+        "signatureInfo": {
+          "alg": "Ps256",
+          "cert_serial_number": "720724073027128164015125666832722375746636448153",
+          "common_name": "C2PA Signer",
+          "issuer": "C2PA Test Signing Cert"
+        },
+        "assertions": {
+          "c2pa.actions.v2": {
+            "actions": [
+              {
+                "action": "c2pa.created",
+                "description": "Recorded video",
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture",
+                "softwareAgent": {
+                  "name": "Northwind Camera Firmware",
+                  "version": "2.0.1"
+                }
+              },
+              {
+                "action": "c2pa.dubbed",
+                "description": "Replaced the audio track with synthetic speech",
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia",
+                "softwareAgent": {
+                  "name": "Fabrikam Voice",
+                  "version": "3.0"
+                }
+              }
+            ],
+            "allActionsIncluded": true
+          },
+          "c2pa.hash.bmff.v3": {
+            "alg": "sha256",
+            "exclusions": [
+              {
+                "data": [
+                  {
+                    "offset": 8,
+                    "value": "b64'2P7D1hsOSDySl1goh37EgQ=='"
+                  }
+                ],
+                "xpath": "/uuid"
+              },
+              {
+                "xpath": "/ftyp"
+              },
+              {
+                "xpath": "/mfra"
+              },
+              {
+                "xpath": "/free"
+              },
+              {
+                "xpath": "/skip"
+              }
+            ],
+            "hash": "b64'712kHw3N7mS8Q2XD5uWXlMGoJ3DKeGVEMdSEzZI084Q='",
+            "name": "jumbf manifest"
+          },
+          "c2pa.hash.bmff.v3__2": {}
+        },
+        "ingredients": [],
+        "credentials": [],
+        "thumbnail": null
+      }
+    },
+    "validation_results": {
+      "activeManifest": {
+        "failure": [],
+        "informational": [
+          {
+            "code": "signingCredential.ocsp.skipped",
+            "explanation": "OCSP fetching skipped",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.signature"
+          },
+          {
+            "code": "assertion.bmffHash.additionalExclusionsPresent",
+            "explanation": "extra BMFF hash exclusion(s) found",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.assertions/c2pa.hash.bmff.v3"
+          }
+        ],
+        "success": [
+          {
+            "code": "signingCredential.trusted",
+            "explanation": "signing certificate trusted, found in [https://c2pa-rs/unknown_tl] trust anchors",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.signature"
+          },
+          {
+            "code": "claimSignature.insideValidity",
+            "explanation": "claim signature valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.signature"
+          },
+          {
+            "code": "claimSignature.validated",
+            "explanation": "claim signature valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.signature"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.assertions/c2pa.actions.v2"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.bmff.v3",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.assertions/c2pa.hash.bmff.v3"
+          },
+          {
+            "code": "assertion.bmffHash.match",
+            "explanation": "BMFF hash valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:11bc7924-a578-40fb-9441-181ae21be609/c2pa.assertions/c2pa.hash.bmff.v3"
+          }
+        ]
+      },
+      "specVersion": "2.4.0",
+      "trustListUri": "https://c2pa-rs/unknown_tl"
+    },
+    "validation_state": "Trusted"
+  }
+}

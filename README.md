@@ -57,29 +57,40 @@ classifyAi(outcome);
 
 ## How It Decides
 
-This is a port of the reference classifier in [c2pa-ai-examples](../c2pa-ai-examples) (`src/classify.rs`). The four categories are an application policy, not something the C2PA specification prescribes. It walks the ingredient history:
+This is a port of the reference classifier in [c2pa-ai-examples](../c2pa-ai-examples) (`src/classify.rs`). The four categories are an application policy, not something the C2PA specification prescribes. It's about *generative* AI, following the IPTC split: `computationalCapture` and `digitalCreation` count as no AI.
 
 1. No readable manifest, or a validation failure in the active manifest → **unknown**.
-2. Action templates are merged into each action first: the `*` template, then same-named templates, then the action's own fields.
-3. The origin comes from the `digitalSourceType` on `c2pa.created`, or from the parent ingredient on `c2pa.opened`, classified recursively. An update manifest with no actions inherits its parent. An ingredient without a manifest can still declare its own source type.
-4. An AI origin whose current components are all AI, or an `empty` origin built only from AI components → **ai**.
-5. Otherwise, an AI origin, an AI action, an AI component, or a `c2pa.ai-disclosure` assertion → **includes-ai**. Components removed by `c2pa.deleted` don't count.
-6. Otherwise, an unknown origin, an unclear source type (`compositeSynthetic`, `algorithmicallyEnhanced`, `screenCapture`, `virtualRecording`, …), an unknown component, or a history that may be incomplete (no `c2pa.actions.v2` with `allActionsIncluded: true`) → **unknown**.
+2. Actions are read as a consumer must see them: the `*` template, then same-named templates, then the action's own fields, then each `related` action merged onto its primary.
+3. The origin comes from the `digitalSourceType` on `c2pa.created`, or from the parent ingredient on `c2pa.opened`, classified recursively. An update manifest can't change the content, so it takes its parent's verdict. An ingredient without a manifest can still declare a source type, or the `c2pa.placed` action that placed it can.
+4. **ai** needs an AI origin (or an `empty` origin built only from AI components), all current components AI, a complete history, and no later change that may have added other content. Cropping or a generative edit keeps it AI; a human drawing, `compositeSynthetic`, or an edit with no source type doesn't.
+5. Otherwise, AI anywhere in the origin, the actions or the current components → **includes-ai**. Components removed by `c2pa.deleted` don't count.
+6. Otherwise, anything uncertain → **unknown**:
+   - an unknown origin or an unclear source type (`virtualRecording`, `screenCapture`, `algorithmicallyEnhanced`, `trainedAlgorithmicData`, …)
+   - an edit, a processing step (resizing, enhancing) or an unrecognised action with no source type
+   - a redacted ingredient or actions assertion
+   - a `c2pa.ai-disclosure` with no source type that declares AI use
+   - a history that may be incomplete (no `c2pa.actions.v2` with `allActionsIncluded: true`)
 7. Anything else → **no-ai**.
 
 Source types must be full IPTC or C2PA URIs. The classifier ignores `signingCredential.untrusted`. Trust comes from the reader's trust list and says nothing about whether AI was used.
 
+An update manifest is one with no hard-binding (`c2pa.hash.*`) assertion. c2pa-rs `Reader::json()` leaves those assertions out, so the classifier only looks for them when some manifest in the store has one. Otherwise it reads an update manifest's `c2pa.opened` action like any other, which gives the same verdict for manifests the c2pa-rs `Builder` writes.
+
 ## Test Fixtures
 
-`examples/` holds the 36 test files from `c2pa-ai-examples`, converted to `VerificationOutcome` JSON. `examples/labels.json` gives each one's expected verdict. The tests check both the verdict and the reason against the reference classifier, word for word.
+`examples/` holds the 77 test files from `c2pa-ai-examples`, converted to `VerificationOutcome` JSON. `examples/labels.json` gives each one's expected verdict. The tests check both the verdict and the reason against the reference classifier, word for word.
 
-Where `labels.json` records a `knownSdkIssue` (a validation code c2pa-rs reports in error, such as `assertion.action.malformed` on a07), the tests check that the file gets the SDK's verdict as-is, and the expected verdict once that code is set aside.
+Where `labels.json` records a `knownSdkIssue` (a validation code c2pa-rs reports in error, such as `assertion.action.malformed` on a07), the tests check that the file gets the expected verdict once that code is set aside everywhere in the store. When the fixture's reader reports the code, they also check that the file gets the SDK's verdict as-is.
 
-To regenerate them, run this with `c2patool` on your PATH and the examples repo checked out next to this one:
+The fixture script also keeps each manifest's `redactions` and its hard-binding assertion labels (from `c2patool --detailed`), and copies ingredients' own `digitalSourceType`, which `c2patool` 0.27 leaves out. To regenerate them, run this with `c2patool` on your PATH and the examples repo checked out next to this one:
 
 ```bash
 npm run fixtures
 ```
+
+To use a different reader, set `C2PATOOL` to any program that takes c2patool's `[--settings FILE] ASSET [--detailed]` arguments and prints c2pa-rs `Reader` JSON. That way you can check fixtures against an unreleased c2pa-rs fix.
+
+The committed fixtures were read with c2pa-rs `fix/action-template-source-type` (`01825ede`), which fixes the a07 template bug. Fixtures regenerated with a released `c2patool` will show that bug again; the tests pass either way.
 
 ## Local Development
 

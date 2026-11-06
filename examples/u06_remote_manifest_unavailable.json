@@ -1,5 +1,5 @@
 {
   "state": false,
   "manifests": [],
-  "error": "Error: invalid JUMBF header"
+  "error": "Error: must fetch remote manifests from url https://northwindtraders.com/c2pa/manifests/u06-not-published.c2pa"
 }

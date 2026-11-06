@@ -3,8 +3,9 @@
 //
 //   npm run fixtures [-- path/to/c2pa-ai-examples]
 //
-// Requires c2patool on PATH. The examples' own trust settings are passed so the
-// test certificate validates; the classifier ignores signingCredential.untrusted anyway.
+// Requires c2patool on PATH, or set C2PATOOL to a specific build. The examples' own trust
+// settings are passed so the test certificate validates; the classifier ignores
+// signingCredential.untrusted anyway.
 
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -20,7 +21,7 @@ mkdirSync(outDir, { recursive: true })
 
 function c2patool(file, ...extra) {
   const args = existsSync(settings) ? ['--settings', settings, file, ...extra] : [file, ...extra]
-  return JSON.parse(execFileSync('c2patool', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }))
+  return JSON.parse(execFileSync(process.env.C2PATOOL ?? 'c2patool', args,{ encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }))
 }
 
 function readStore(file) {
@@ -31,13 +32,19 @@ function readStore(file) {
     // No manifest, or one that can't be read (e.g. an unreachable remote manifest).
     return { error: String(err.stderr ?? err.message).trim() }
   }
-  // c2patool 0.27 leaves an ingredient's own digitalSourceType out of its JSON, though
-  // c2pa-rs Reader::json() includes it as digital_source_type. Copy it from the raw assertion.
   const detailed = c2patool(file, '--detailed')
   for (const [label, m] of Object.entries(store.manifests ?? {})) {
+    const raw = detailed.manifests?.[label]?.assertion_store ?? {}
+    // c2patool 0.27 leaves an ingredient's own digitalSourceType out of its JSON, though
+    // c2pa-rs Reader::json() includes it as digital_source_type. Copy it from the raw assertion.
     for (const ing of m.ingredients ?? []) {
-      const dst = detailed.manifests?.[label]?.assertion_store?.[ing.label]?.digitalSourceType
+      const dst = raw[ing.label]?.digitalSourceType
       if (dst && !ing.digital_source_type) ing.digital_source_type = dst
+    }
+    // Reader::json() omits hard-binding assertions, which are what tell a standard manifest
+    // from an update manifest. Keep them, labels only.
+    for (const key of Object.keys(raw).filter((k) => k.startsWith('c2pa.hash.'))) {
+      m.assertions = [...(m.assertions ?? []), { label: key, data: {} }]
     }
   }
   return store
@@ -69,6 +76,7 @@ function toOutcome(store) {
     signatureInfo: m.signature_info,
     assertions: assertionRecord(m.assertions),
     ingredients: m.ingredients ?? [],
+    ...(m.redactions ? { redactions: m.redactions } : {}),
     credentials: [],
     thumbnail: null,
   }))

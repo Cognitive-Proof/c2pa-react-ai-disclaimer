@@ -19,21 +19,35 @@ interface Label {
   knownSdkIssue?: { code: string; sdkVerdict: string }
 }
 
-/** Drops a failure code that c2pa-rs reports in error, as the reference check does. */
-function setAside(outcome: VerificationOutcome, code: string): VerificationOutcome {
-  const results = outcome.manifestStore?.validation_results?.activeManifest
-  if (results) results.failure = results.failure.filter((f) => f.code !== code)
-  return outcome
+/**
+ * Drops a failure code that c2pa-rs reports in error, everywhere in the store (active
+ * manifest and ingredients), as the reference check does. Returns whether it was there.
+ */
+function setAside(value: unknown, code: string): boolean {
+  if (Array.isArray(value)) return value.map((v) => setAside(v, code)).some(Boolean)
+  if (!value || typeof value !== 'object') return false
+  const obj = value as Record<string, unknown>
+  let found = false
+  for (const key of ['failure', 'validation_status']) {
+    const list = obj[key]
+    if (Array.isArray(list)) {
+      const kept = list.filter((x) => x?.code !== code)
+      found ||= kept.length !== list.length
+      obj[key] = kept
+    }
+  }
+  return Object.values(obj).map((v) => setAside(v, code)).some(Boolean) || found
 }
 
 describe('classifyAi against c2pa-ai-examples', () => {
   it.each((labels as Label[]).map((l) => [l.fixture, l.expected, l] as const))(
     '%s → %s',
     (fixture, expected, { classifierReason: reason, knownSdkIssue }) => {
-      let outcome = loadFixture(fixture)
+      const outcome = loadFixture(fixture)
       if (knownSdkIssue) {
-        expect(classifyAi(outcome).verdict).toBe(knownSdkIssue.sdkVerdict)
-        outcome = setAside(outcome, knownSdkIssue.code)
+        const before = classifyAi(structuredClone(outcome)).verdict
+        // Older readers don't all report the code; when this one does, it decides the verdict.
+        if (setAside(outcome, knownSdkIssue.code)) expect(before).toBe(knownSdkIssue.sdkVerdict)
       }
       const result = classifyAi(outcome)
       expect(result.verdict).toBe(expected)
@@ -43,7 +57,107 @@ describe('classifyAi against c2pa-ai-examples', () => {
   )
 })
 
+// Ports of the reference classifier's unit tests: cases c2pa-rs can't build as files.
+describe('classifyAi rules', () => {
+  const AI = 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia'
+  const CAPTURE = 'http://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture'
+  const FILL = 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia'
+  const HUMAN_EDITS = 'http://cv.iptc.org/newscodes/digitalsourcetype/humanEdits'
+  const SYNTHETIC = 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeSynthetic'
+
+  /** [label, actions data, ingredients, is an update manifest]; the first is active. */
+  type Spec = [string, object, object[], boolean]
+
+  function classifyStore(specs: Spec[]): AiVerdict {
+    const manifests = Object.fromEntries(
+      specs.map(([label, actions, ingredients, update]) => [
+        label,
+        {
+          assertions: { 'c2pa.actions.v2': actions, ...(update ? {} : { 'c2pa.hash.data': {} }) },
+          ingredients,
+        },
+      ]),
+    )
+    return classifyAi({ activeManifest: specs[0][0], manifests } as never).verdict
+  }
+
+  const single = (actions: object) => classifyStore([['m', actions, [], false]])
+  const after = (origin: string, edit: object) =>
+    single({ actions: [{ action: 'c2pa.created', digitalSourceType: origin }, edit], allActionsIncluded: true })
+
+  const aiParent: Spec = ['parent', { actions: [{ action: 'c2pa.created', digitalSourceType: AI }], allActionsIncluded: true }, [], false]
+  const updateOver = (action: string, update = true): Spec => [
+    'update',
+    { actions: [{ action }] },
+    [{ relationship: 'parentOf', active_manifest: 'parent', title: 'parent' }],
+    update,
+  ]
+
+  it('update manifests inherit their parent, whatever they record', () => {
+    expect(classifyStore([updateOver('c2pa.published'), aiParent])).toBe('ai')
+    expect(classifyStore([updateOver('c2pa.edited.metadata'), aiParent])).toBe('ai')
+    expect(classifyStore([updateOver('c2pa.published', false), aiParent])).toBe('unknown')
+  })
+
+  it('finds a generative edit in nested related actions', () => {
+    expect(single({
+      actions: [
+        { action: 'c2pa.created', digitalSourceType: CAPTURE },
+        { action: 'c2pa.edited', related: [{ action: 'c2pa.color_adjustments', related: [{ action: 'c2pa.edited', digitalSourceType: FILL }] }] },
+      ],
+      allActionsIncluded: true,
+    })).toBe('includes-ai')
+  })
+
+  it('lets later edits decide whether an AI origin stays entirely AI', () => {
+    expect(after(AI, { action: 'c2pa.cropped' })).toBe('ai')
+    expect(after(AI, { action: 'c2pa.edited', digitalSourceType: FILL })).toBe('ai')
+    expect(after(AI, { action: 'c2pa.drawing', digitalSourceType: HUMAN_EDITS })).toBe('includes-ai')
+    expect(after(AI, { action: 'c2pa.edited', digitalSourceType: SYNTHETIC })).toBe('includes-ai')
+    expect(after(AI, { action: 'c2pa.edited' })).toBe('includes-ai')
+  })
+
+  it("doesn't assume an edit or processing step without a source type is non-generative", () => {
+    expect(after(CAPTURE, { action: 'c2pa.edited' })).toBe('unknown')
+    expect(after(CAPTURE, { action: 'com.fabrikam.stylize' })).toBe('unknown')
+    expect(after(CAPTURE, { action: 'c2pa.enhanced' })).toBe('unknown')
+    expect(after(CAPTURE, { action: 'c2pa.resized', digitalSourceType: HUMAN_EDITS })).toBe('no-ai')
+    expect(after(CAPTURE, { action: 'c2pa.cropped' })).toBe('no-ai')
+    expect(after(AI, { action: 'c2pa.resized' })).toBe('ai')
+  })
+
+  it('counts a source type declared on c2pa.placed', () => {
+    const actions = {
+      actions: [
+        { action: 'c2pa.created', digitalSourceType: CAPTURE },
+        { action: 'c2pa.placed', digitalSourceType: AI, parameters: { ingredients: [{ url: 'self#jumbf=c2pa.assertions/c2pa.ingredient.v3' }] } },
+      ],
+      allActionsIncluded: true,
+    }
+    const unsigned = [{ relationship: 'componentOf', label: 'c2pa.ingredient.v3', title: 'raw.jpg' }]
+    expect(classifyStore([['m', actions, unsigned, false]])).toBe('includes-ai')
+  })
+
+  it("doesn't treat trainedAlgorithmicData as generative", () => {
+    const data = 'http://c2pa.org/digitalsourcetype/trainedAlgorithmicData'
+    expect(single({ actions: [{ action: 'c2pa.created', digitalSourceType: data }], allActionsIncluded: true })).toBe('unknown')
+  })
+
+  it('treats a missing allActionsIncluded as a possibly incomplete history', () => {
+    expect(single({ actions: [{ action: 'c2pa.created', digitalSourceType: CAPTURE }] })).toBe('unknown')
+  })
+})
+
 describe('classifyAi input shapes', () => {
+  it("doesn't mistake every manifest for an update manifest when hard bindings are left out", () => {
+    // c2pa-rs Reader::json() omits c2pa.hash.* assertions.
+    const a03 = loadFixture('a03_ai_then_cropped.json')
+    for (const entry of Object.values(a03.manifestStore!.manifests)) {
+      entry.assertions = Object.fromEntries(Object.entries(entry.assertions!).filter(([k]) => !k.startsWith('c2pa.hash.')))
+    }
+    expect(classifyAi(a03).verdict).toBe('ai')
+  })
+
   const a01 = loadFixture('a01_text_to_image.json')
   const store = a01.manifestStore!
   const entry = store.manifests[store.activeManifest]

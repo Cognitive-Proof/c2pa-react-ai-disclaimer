@@ -1,0 +1,220 @@
+{
+  "state": true,
+  "manifests": [
+    {
+      "id": "urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d",
+      "claim_version": 2,
+      "title": "u13_empty_with_unknown_component.jpg",
+      "instanceId": "xmp.iid:5fd5e81d-e28f-40af-9d2f-8a7e59d618ce",
+      "claimGenerator": null,
+      "claimGeneratorInfo": [
+        {
+          "name": "c2pa-ai-examples",
+          "org.contentauth.c2pa_rs": "0.92.0-dev",
+          "version": "0.1.0"
+        }
+      ],
+      "signatureInfo": {
+        "alg": "Ps256",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153",
+        "common_name": "C2PA Signer",
+        "issuer": "C2PA Test Signing Cert"
+      },
+      "assertions": {
+        "c2pa.actions.v2": {
+          "actions": [
+            {
+              "action": "c2pa.created",
+              "digitalSourceType": "http://c2pa.org/digitalsourcetype/empty",
+              "softwareAgent": {
+                "name": "Northwind Layout",
+                "version": "5.1"
+              }
+            },
+            {
+              "action": "c2pa.placed",
+              "parameters": {
+                "ingredients": [
+                  {
+                    "hash": "b64'RjlVS3CJAhNO2dXuee882fkMusH9Lnn63SSViZcTznY='",
+                    "url": "self#jumbf=c2pa.assertions/c2pa.ingredient.v3"
+                  }
+                ]
+              },
+              "softwareAgent": {
+                "name": "Northwind Photo Editor",
+                "version": "12.3"
+              }
+            }
+          ],
+          "allActionsIncluded": true
+        },
+        "c2pa.hash.data": {}
+      },
+      "ingredients": [
+        {
+          "format": "image/jpeg",
+          "instance_id": "xmp.iid:0f23eb0a-9e97-475d-9ec7-550ef9d5c629",
+          "label": "c2pa.ingredient.v3",
+          "relationship": "componentOf",
+          "thumbnail": {
+            "format": "image/jpeg",
+            "identifier": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.thumbnail.ingredient"
+          },
+          "title": "photo-unsigned.jpg"
+        }
+      ],
+      "credentials": [],
+      "thumbnail": null
+    }
+  ],
+  "manifestStore": {
+    "activeManifest": "urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d",
+    "manifests": {
+      "urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d": {
+        "label": "urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d",
+        "claim_version": 2,
+        "title": "u13_empty_with_unknown_component.jpg",
+        "instanceId": "xmp.iid:5fd5e81d-e28f-40af-9d2f-8a7e59d618ce",
+        "claimGenerator": null,
+        "claimGeneratorInfo": [
+          {
+            "name": "c2pa-ai-examples",
+            "org.contentauth.c2pa_rs": "0.92.0-dev",
+            "version": "0.1.0"
+          }
+        ],
+        "signatureInfo": {
+          "alg": "Ps256",
+          "cert_serial_number": "720724073027128164015125666832722375746636448153",
+          "common_name": "C2PA Signer",
+          "issuer": "C2PA Test Signing Cert"
+        },
+        "assertions": {
+          "c2pa.actions.v2": {
+            "actions": [
+              {
+                "action": "c2pa.created",
+                "digitalSourceType": "http://c2pa.org/digitalsourcetype/empty",
+                "softwareAgent": {
+                  "name": "Northwind Layout",
+                  "version": "5.1"
+                }
+              },
+              {
+                "action": "c2pa.placed",
+                "parameters": {
+                  "ingredients": [
+                    {
+                      "hash": "b64'RjlVS3CJAhNO2dXuee882fkMusH9Lnn63SSViZcTznY='",
+                      "url": "self#jumbf=c2pa.assertions/c2pa.ingredient.v3"
+                    }
+                  ]
+                },
+                "softwareAgent": {
+                  "name": "Northwind Photo Editor",
+                  "version": "12.3"
+                }
+              }
+            ],
+            "allActionsIncluded": true
+          },
+          "c2pa.hash.data": {}
+        },
+        "ingredients": [
+          {
+            "format": "image/jpeg",
+            "instance_id": "xmp.iid:0f23eb0a-9e97-475d-9ec7-550ef9d5c629",
+            "label": "c2pa.ingredient.v3",
+            "relationship": "componentOf",
+            "thumbnail": {
+              "format": "image/jpeg",
+              "identifier": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.thumbnail.ingredient"
+            },
+            "title": "photo-unsigned.jpg"
+          }
+        ],
+        "credentials": [],
+        "thumbnail": null
+      }
+    },
+    "validation_results": {
+      "activeManifest": {
+        "failure": [],
+        "informational": [
+          {
+            "code": "signingCredential.ocsp.skipped",
+            "explanation": "OCSP fetching skipped",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.signature"
+          }
+        ],
+        "success": [
+          {
+            "code": "signingCredential.trusted",
+            "explanation": "signing certificate trusted, found in [https://c2pa-rs/unknown_tl] trust anchors",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.signature"
+          },
+          {
+            "code": "claimSignature.insideValidity",
+            "explanation": "claim signature valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.signature"
+          },
+          {
+            "code": "claimSignature.validated",
+            "explanation": "claim signature valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.signature"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.actions.v2"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.thumbnail.claim"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.hash.data"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.ingredient",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.thumbnail.ingredient"
+          },
+          {
+            "code": "assertion.hashedURI.match",
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.ingredient.v3",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.ingredient.v3"
+          },
+          {
+            "code": "assertion.dataHash.match",
+            "explanation": "data hash valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.hash.data"
+          }
+        ]
+      },
+      "ingredientDeltas": [
+        {
+          "ingredientAssertionURI": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.ingredient.v3",
+          "validationDeltas": {
+            "failure": [],
+            "informational": [
+              {
+                "code": "ingredient.unknownProvenance",
+                "explanation": "photo-unsigned.jpg: ingredient does not have provenance",
+                "url": "self#jumbf=/c2pa/urn:c2pa:cc3a38e3-6dcb-43b3-9107-e59c2d20073d/c2pa.assertions/c2pa.ingredient.v3"
+              }
+            ],
+            "success": []
+          }
+        }
+      ],
+      "specVersion": "2.4.0",
+      "trustListUri": "https://c2pa-rs/unknown_tl"
+    },
+    "validation_state": "Trusted"
+  }
+}

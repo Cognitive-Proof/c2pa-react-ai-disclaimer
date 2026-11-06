@@ -2,39 +2,40 @@
   "state": true,
   "manifests": [
     {
-      "id": "urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0",
+      "id": "urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa",
       "claim_version": 2,
       "title": "i03_created_with_ai_elements.jpg",
-      "instanceId": "xmp.iid:0af7a8a2-4fea-4310-ba8c-fd96fdfe1734",
+      "instanceId": "xmp.iid:d5bd852f-b526-4f93-94b7-d913f4009c67",
       "claimGenerator": null,
       "claimGeneratorInfo": [
         {
           "name": "c2pa-ai-examples",
-          "version": "0.1.0",
-          "org.contentauth.c2pa_rs": "0.92.0-dev"
+          "org.contentauth.c2pa_rs": "0.92.0-dev",
+          "version": "0.1.0"
         }
       ],
       "signatureInfo": {
         "alg": "Ps256",
-        "issuer": "C2PA Test Signing Cert",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153",
         "common_name": "C2PA Signer",
-        "cert_serial_number": "720724073027128164015125666832722375746636448153"
+        "issuer": "C2PA Test Signing Cert"
       },
       "assertions": {
         "c2pa.actions.v2": {
           "actions": [
             {
               "action": "c2pa.created",
+              "description": "Layout with AI-generated artwork",
+              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia",
               "softwareAgent": {
                 "name": "Northwind Layout",
                 "version": "5.1"
-              },
-              "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia",
-              "description": "Layout with AI-generated artwork"
+              }
             }
           ],
           "allActionsIncluded": true
-        }
+        },
+        "c2pa.hash.data": {}
       },
       "ingredients": [],
       "credentials": [],
@@ -42,99 +43,100 @@
     }
   ],
   "manifestStore": {
-    "activeManifest": "urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0",
+    "activeManifest": "urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa",
     "manifests": {
-      "urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0": {
-        "label": "urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0",
+      "urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa": {
+        "label": "urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa",
         "claim_version": 2,
         "title": "i03_created_with_ai_elements.jpg",
-        "instanceId": "xmp.iid:0af7a8a2-4fea-4310-ba8c-fd96fdfe1734",
+        "instanceId": "xmp.iid:d5bd852f-b526-4f93-94b7-d913f4009c67",
         "claimGenerator": null,
         "claimGeneratorInfo": [
           {
             "name": "c2pa-ai-examples",
-            "version": "0.1.0",
-            "org.contentauth.c2pa_rs": "0.92.0-dev"
+            "org.contentauth.c2pa_rs": "0.92.0-dev",
+            "version": "0.1.0"
           }
         ],
         "signatureInfo": {
           "alg": "Ps256",
-          "issuer": "C2PA Test Signing Cert",
+          "cert_serial_number": "720724073027128164015125666832722375746636448153",
           "common_name": "C2PA Signer",
-          "cert_serial_number": "720724073027128164015125666832722375746636448153"
+          "issuer": "C2PA Test Signing Cert"
         },
         "assertions": {
           "c2pa.actions.v2": {
             "actions": [
               {
                 "action": "c2pa.created",
+                "description": "Layout with AI-generated artwork",
+                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia",
                 "softwareAgent": {
                   "name": "Northwind Layout",
                   "version": "5.1"
-                },
-                "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia",
-                "description": "Layout with AI-generated artwork"
+                }
               }
             ],
             "allActionsIncluded": true
-          }
+          },
+          "c2pa.hash.data": {}
         },
         "ingredients": [],
         "credentials": [],
         "thumbnail": null
       }
     },
-    "validation_status": [
-      {
-        "code": "signingCredential.untrusted",
-        "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.signature",
-        "explanation": "signing certificate untrusted"
-      }
-    ],
     "validation_results": {
       "activeManifest": {
+        "failure": [],
+        "informational": [
+          {
+            "code": "signingCredential.ocsp.skipped",
+            "explanation": "OCSP fetching skipped",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.signature"
+          }
+        ],
         "success": [
           {
+            "code": "signingCredential.trusted",
+            "explanation": "signing certificate trusted, found in [https://c2pa-rs/unknown_tl] trust anchors",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.signature"
+          },
+          {
             "code": "claimSignature.insideValidity",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.signature",
-            "explanation": "claim signature valid"
+            "explanation": "claim signature valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.signature"
           },
           {
             "code": "claimSignature.validated",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.signature",
-            "explanation": "claim signature valid"
+            "explanation": "claim signature valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.signature"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.assertions/c2pa.actions.v2",
-            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.assertions/c2pa.actions.v2"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.assertions/c2pa.thumbnail.claim",
-            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim"
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.assertions/c2pa.thumbnail.claim"
           },
           {
             "code": "assertion.hashedURI.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.assertions/c2pa.hash.data",
-            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
+            "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.assertions/c2pa.hash.data"
           },
           {
             "code": "assertion.dataHash.match",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.assertions/c2pa.hash.data",
-            "explanation": "data hash valid"
-          }
-        ],
-        "informational": [],
-        "failure": [
-          {
-            "code": "signingCredential.untrusted",
-            "url": "self#jumbf=/c2pa/urn:c2pa:27330d19-6c8d-4c6b-8808-f7c155c303a0/c2pa.signature",
-            "explanation": "signing certificate untrusted"
+            "explanation": "data hash valid",
+            "url": "self#jumbf=/c2pa/urn:c2pa:cdca17e4-2c19-42d3-a161-d6a1197422fa/c2pa.assertions/c2pa.hash.data"
           }
         ]
-      }
+      },
+      "specVersion": "2.4.0",
+      "trustListUri": "https://c2pa-rs/unknown_tl"
     },
-    "validation_state": "Valid"
+    "validation_state": "Trusted"
   }
 }

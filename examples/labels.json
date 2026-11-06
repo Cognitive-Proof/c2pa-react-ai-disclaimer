@@ -44,7 +44,7 @@
     "expected": "ai",
     "description": "Update manifest over a01 adding a review assertion; its only action is c2pa.opened, so the AI origin is inherited from the parent.",
     "validationState": "Trusted",
-    "classifierReason": "opened parent: ingredient 'untitled ingredient' -> created as trainedAlgorithmicMedia",
+    "classifierReason": "update manifest over ingredient 'untitled ingredient' -> created as trainedAlgorithmicMedia",
     "fixture": "a06_update_manifest_over_ai.json"
   },
   {
@@ -77,6 +77,62 @@
     "fixture": "a09_ai_disclosure_prompt_guided.json"
   },
   {
+    "file": "files/ai/a10_ai_disclosure_human_validated.jpg",
+    "expected": "ai",
+    "description": "trainedAlgorithmicMedia plus c2pa.ai-disclosure with human_validated: human approval doesn't make the content partly human-made.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "fixture": "a10_ai_disclosure_human_validated.json"
+  },
+  {
+    "file": "files/ai/a11_empty_with_ai_component.jpg",
+    "expected": "ai",
+    "description": "Blank canvas (empty) whose only content is a01.",
+    "validationState": "Trusted",
+    "classifierReason": "created as empty; component: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia",
+    "fixture": "a11_empty_with_ai_component.json"
+  },
+  {
+    "file": "files/ai/a12_ai_then_generative_inpaint.jpg",
+    "expected": "ai",
+    "description": "a01 with a region inpainted by generative AI. IPTC defines compositeWithTrainedAlgorithmicMedia as generative augmentation, so the content stays AI.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia; c2pa.edited as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "a12_ai_then_generative_inpaint.json"
+  },
+  {
+    "file": "files/ai/a13_text_to_image_with_reference_input.jpg",
+    "expected": "ai",
+    "description": "Text-to-image with an unsigned reference image as an inputTo ingredient. An input to the model is not placed content, so its unknown provenance doesn't matter.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia",
+    "fixture": "a13_text_to_image_with_reference_input.json"
+  },
+  {
+    "file": "files/ai/a14_ai_minimal_disclosure.jpg",
+    "expected": "ai",
+    "description": "trainedAlgorithmicMedia with the smallest valid c2pa.ai-disclosure: only modelType.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "fixture": "a14_ai_minimal_disclosure.json"
+  },
+  {
+    "file": "files/ai/a15_ai_disclosure_empty_content_profile.jpg",
+    "expected": "ai",
+    "description": "As a14 with an empty contentProfile map: humanOversightLevel is optional.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "fixture": "a15_ai_disclosure_empty_content_profile.json"
+  },
+  {
+    "file": "files/ai/a16_ai_two_model_disclosures.jpg",
+    "expected": "ai",
+    "description": "Two models (a text encoder and a diffusion model), each with its own c2pa.ai-disclosure, linked from c2pa.created through relatedAssertions.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "fixture": "a16_ai_two_model_disclosures.json"
+  },
+  {
     "file": "files/no-ai/n01_camera_capture.jpg",
     "expected": "no-ai",
     "description": "Simulated camera capture: digitalCapture.",
@@ -89,7 +145,7 @@
     "expected": "no-ai",
     "description": "n01 cropped and colour-adjusted; only non-generative edits.",
     "validationState": "Trusted",
-    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.adjustedColor as humanEdits",
     "fixture": "n02_capture_cropped_and_adjusted.json"
   },
   {
@@ -101,12 +157,20 @@
     "fixture": "n03_digital_illustration.json"
   },
   {
-    "file": "files/no-ai/n04_hdr_composite_capture.jpg",
+    "file": "files/no-ai/n04_hdr_computational_capture.jpg",
     "expected": "no-ai",
-    "description": "Simulated HDR merge: compositeCapture.",
+    "description": "Simulated in-camera HDR: computationalCapture, which IPTC defines as frames merged by signal processing and/or non-generative AI.",
+    "validationState": "Trusted",
+    "classifierReason": "created as computationalCapture",
+    "fixture": "n04_hdr_computational_capture.json"
+  },
+  {
+    "file": "files/no-ai/n08_composite_of_captures.jpg",
+    "expected": "no-ai",
+    "description": "Simulated collage of real-life captures: compositeCapture.",
     "validationState": "Trusted",
     "classifierReason": "created as compositeCapture",
-    "fixture": "n04_hdr_composite_capture.json"
+    "fixture": "n08_composite_of_captures.json"
   },
   {
     "file": "files/no-ai/n05_field_recording.wav",
@@ -181,12 +245,164 @@
     "fixture": "i07_ai_disclosure_human_validated.json"
   },
   {
+    "file": "files/includes-ai/i08_composite_synthetic.jpg",
+    "expected": "includes-ai",
+    "description": "compositeSynthetic: IPTC defines it as a composite of several elements, at least one of which is generative AI.",
+    "validationState": "Trusted",
+    "classifierReason": "created as compositeSynthetic",
+    "fixture": "i08_composite_synthetic.json"
+  },
+  {
+    "file": "files/includes-ai/i09_generative_edit_in_related_action.jpg",
+    "expected": "includes-ai",
+    "description": "n01 edited; the generative fill appears only in a related action, which consumers merge with its primary c2pa.edited.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited may add content and has no digitalSourceType; c2pa.edited as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i09_generative_edit_in_related_action.json"
+  },
+  {
+    "file": "files/includes-ai/i10_ai_origin_incomplete_history.jpg",
+    "expected": "includes-ai",
+    "description": "trainedAlgorithmicMedia with allActionsIncluded: false. AI is present, but unrecorded changes may have added other content, so it can't be called entirely AI.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; history may be incomplete (allActionsIncluded not true)",
+    "fixture": "i10_ai_origin_incomplete_history.json"
+  },
+  {
+    "file": "files/includes-ai/i11_ai_origin_unknown_component.jpg",
+    "expected": "includes-ai",
+    "description": "a01 with a component of unknown provenance placed into it: AI is present, the rest is unknown.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia; component: ingredient 'photo-unsigned.jpg' has no manifest or source type",
+    "fixture": "i11_ai_origin_unknown_component.json"
+  },
+  {
+    "file": "files/includes-ai/i12_empty_with_mixed_components.jpg",
+    "expected": "includes-ai",
+    "description": "Blank canvas (empty) with a01 and n01 placed on it.",
+    "validationState": "Trusted",
+    "classifierReason": "created as empty; component: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia; component: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture",
+    "fixture": "i12_empty_with_mixed_components.json"
+  },
+  {
+    "file": "files/includes-ai/i13_ai_with_hand_drawn_annotation.jpg",
+    "expected": "includes-ai",
+    "description": "a01 with a hand-drawn annotation (c2pa.drawing, humanEdits): human content added without an ingredient.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia; c2pa.drawing as humanEdits; a later action may have added non-AI content",
+    "fixture": "i13_ai_with_hand_drawn_annotation.json"
+  },
+  {
+    "file": "files/includes-ai/i14_ai_then_composite_synthetic_edit.jpg",
+    "expected": "includes-ai",
+    "description": "a01 edited as compositeSynthetic, which declares a mix of elements, so it is no longer entirely AI.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia; c2pa.edited as compositeSynthetic; a later action may have added non-AI content",
+    "fixture": "i14_ai_then_composite_synthetic_edit.json"
+  },
+  {
+    "file": "files/includes-ai/i15_mixed_cropped_away_from_ai.jpg",
+    "expected": "includes-ai",
+    "description": "i02 cropped so the placed AI element is outside the frame. A crop doesn't say what it removed, so the AI is still in the provenance and its removal isn't established.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'i02_ai_element_placed.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; component: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia",
+    "fixture": "i15_mixed_cropped_away_from_ai.json"
+  },
+  {
+    "file": "files/includes-ai/i16_ai_declared_on_placed_action.jpg",
+    "expected": "includes-ai",
+    "description": "n01 with an unsigned element placed; only the c2pa.placed action declares it trainedAlgorithmicMedia.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.placed as trainedAlgorithmicMedia; component: ingredient 'dream.jpg' declares trainedAlgorithmicMedia (no manifest)",
+    "fixture": "i16_ai_declared_on_placed_action.json"
+  },
+  {
+    "file": "files/includes-ai/i17_ai_component_partly_deleted.jpg",
+    "expected": "includes-ai",
+    "description": "i02 with part of its AI element deleted. The c2pa.deleted references no ingredient, so it doesn't establish the whole AI component was removed.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'i02_ai_element_placed.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; component: ingredient 'a01_text_to_image.jpg' -> created as trainedAlgorithmicMedia; c2pa.deleted of part of the content",
+    "fixture": "i17_ai_component_partly_deleted.json"
+  },
+  {
+    "file": "files/includes-ai/i18_generative_fill_region.jpg",
+    "expected": "includes-ai",
+    "description": "As i01, with the filled rectangle recorded in the action's changes. A region of AI is still AI in the content.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i18_generative_fill_region.json"
+  },
+  {
+    "file": "files/includes-ai/i19_video_with_ai_voice_track.mp4",
+    "expected": "includes-ai",
+    "description": "Captured video whose audio track was dubbed with synthetic speech: AI in one track of mixed media.",
+    "validationState": "Trusted",
+    "classifierReason": "created as digitalCapture; c2pa.dubbed as trainedAlgorithmicMedia",
+    "fixture": "i19_video_with_ai_voice_track.json"
+  },
+  {
+    "file": "files/includes-ai/i20_ai_in_second_actions_assertion.jpg",
+    "expected": "includes-ai",
+    "description": "Two actions assertions; the generative fill is only in the second, so consumers must read all of them.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i20_ai_in_second_actions_assertion.json"
+  },
+  {
+    "file": "files/includes-ai/i21_capture_generative_upscale.jpg",
+    "expected": "includes-ai",
+    "description": "n01 upscaled by a generative model: resizing declared compositeWithTrainedAlgorithmicMedia.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.resized as compositeWithTrainedAlgorithmicMedia",
+    "fixture": "i21_capture_generative_upscale.json"
+  },
+  {
     "file": "files/no-ai/n07_ai_component_deleted.jpg",
     "expected": "no-ai",
     "description": "i02 with its AI component removed, recorded by c2pa.deleted. AI is in the history but not in the current content.",
     "validationState": "Trusted",
-    "classifierReason": "opened parent: ingredient 'i02_ai_element_placed.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.deleted removes a component",
+    "classifierReason": "opened parent: ingredient 'i02_ai_element_placed.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.deleted removes a whole component",
     "fixture": "n07_ai_component_deleted.json"
+  },
+  {
+    "file": "files/no-ai/n09_ai_component_deleted_via_template_parameters.jpg",
+    "expected": "no-ai",
+    "description": "As n07, but the deletion's ingredient reference comes from a template's deprecated templateParameters, which consumers must still merge.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'i02_ai_element_placed.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.deleted removes a whole component",
+    "fixture": "n09_ai_component_deleted_via_template_parameters.json"
+  },
+  {
+    "file": "files/no-ai/n10_computational_capture_with_model_disclosure.jpg",
+    "expected": "no-ai",
+    "description": "computationalCapture with a c2pa.ai-disclosure naming a scikit-learn model: non-generative AI that the source type already declares.",
+    "validationState": "Trusted",
+    "classifierReason": "created as computationalCapture; c2pa.ai-disclosure present",
+    "fixture": "n10_computational_capture_with_model_disclosure.json"
+  },
+  {
+    "file": "files/no-ai/n11_capture_then_declared_human_edit.jpg",
+    "expected": "no-ai",
+    "description": "n01 edited with an explicit humanEdits source type: an affirmative non-generative declaration, unlike u16.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited as humanEdits",
+    "fixture": "n11_capture_then_declared_human_edit.json"
+  },
+  {
+    "file": "files/no-ai/n12_ai_placed_on_action_then_deleted.jpg",
+    "expected": "no-ai",
+    "description": "i16 with its placed element deleted. The AI was declared only on the c2pa.placed action, and that evidence goes with the component.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'i16_ai_declared_on_placed_action.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.deleted removes a whole component",
+    "fixture": "n12_ai_placed_on_action_then_deleted.json"
+  },
+  {
+    "file": "files/no-ai/n13_capture_enhanced_declared_non_generative.jpg",
+    "expected": "no-ai",
+    "description": "n01 enhanced, declared humanEdits (non-generative tools). Compare u18 and i21.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.enhanced as humanEdits",
+    "fixture": "n13_capture_enhanced_declared_non_generative.json"
   },
   {
     "file": "files/unknown/u01_no_manifest.jpg",
@@ -217,7 +433,7 @@
     "expected": "unknown",
     "description": "Signed edit of a parent that has neither a manifest nor a declared source type.",
     "validationState": "Trusted",
-    "classifierReason": "opened parent: ingredient 'photo-unsigned.jpg' has no manifest or source type",
+    "classifierReason": "opened parent: ingredient 'photo-unsigned.jpg' has no manifest or source type; c2pa.adjustedColor has no digitalSourceType",
     "fixture": "u04_edited_from_unsigned_parent.json"
   },
   {
@@ -235,14 +451,6 @@
     "validationState": "unreadable: must fetch remote manifests from url https://northwindtraders.com/c2pa/manifests/u06-not-published.c2pa",
     "classifierReason": "no readable C2PA manifest",
     "fixture": "u06_remote_manifest_unavailable.json"
-  },
-  {
-    "file": "files/unknown/u07_composite_synthetic.jpg",
-    "expected": "unknown",
-    "description": "compositeSynthetic says synthetic elements are present, not whether a trained model made them.",
-    "validationState": "Trusted",
-    "classifierReason": "created as compositeSynthetic",
-    "fixture": "u07_composite_synthetic.json"
   },
   {
     "file": "files/unknown/u08_algorithmically_enhanced.jpg",
@@ -283,5 +491,147 @@
     "validationState": "Trusted",
     "classifierReason": "created as virtualRecording",
     "fixture": "u12_virtual_recording.json"
+  },
+  {
+    "file": "files/unknown/u14_capture_with_model_disclosure.jpg",
+    "expected": "unknown",
+    "description": "digitalCapture with a c2pa.ai-disclosure, but no source type declares AI use: a model was used in some undeclared way.",
+    "validationState": "Trusted",
+    "classifierReason": "created as digitalCapture; c2pa.ai-disclosure present but no source type declares AI use",
+    "fixture": "u14_capture_with_model_disclosure.json"
+  },
+  {
+    "file": "files/unknown/u15_capture_then_custom_action.jpg",
+    "expected": "unknown",
+    "description": "n01 with an entity-specific action and no digitalSourceType. The history is complete, but what that action did is unknown.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; com.northwindtraders.stylize has unknown effect and no digitalSourceType",
+    "fixture": "u15_capture_then_custom_action.json"
+  },
+  {
+    "file": "files/unknown/u16_capture_then_unspecified_edit.jpg",
+    "expected": "unknown",
+    "description": "n01 then c2pa.edited with no source type. The spec doesn't require a generative edit to declare one, so a complete history still can't rule it out.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.edited may add content and has no digitalSourceType",
+    "fixture": "u16_capture_then_unspecified_edit.json"
+  },
+  {
+    "file": "files/unknown/u17_ai_ingredient_redacted.jpg",
+    "expected": "unknown",
+    "description": "i02 opened and its AI ingredient assertion redacted. The AI content is still there; only its provenance is hidden, so redaction must not read as no AI.",
+    "validationState": "Invalid",
+    "classifierReason": "opened parent: ingredient 'i02_ai_element_placed.jpg' -> opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; redacts self#jumbf=/c2pa/urn:c2pa:df153919-6af2-4209-bf74-c62763ca0033/c2pa.assertions/c2pa.ingredient.v3__1",
+    "knownSdkIssue": {
+      "code": "assertion.action.ingredientMismatch",
+      "note": "c2pa-rs rejects i02's c2pa.placed for referencing the redacted ingredient, which Validate_Assertions allows",
+      "sdkVerdict": "unknown"
+    },
+    "fixture": "u17_ai_ingredient_redacted.json"
+  },
+  {
+    "file": "files/unknown/u18_capture_enhanced_undeclared.jpg",
+    "expected": "unknown",
+    "description": "n01 enhanced with no source type. The action name doesn't say whether a generative model did it (as in AI upscaling), so a complete history can't establish no-ai.",
+    "validationState": "Trusted",
+    "classifierReason": "opened parent: ingredient 'n01_camera_capture.jpg' -> created as digitalCapture; c2pa.enhanced has no digitalSourceType",
+    "fixture": "u18_capture_enhanced_undeclared.json"
+  },
+  {
+    "file": "files/unknown/u19_update_adds_model_disclosure.jpg",
+    "expected": "unknown",
+    "description": "Update manifest over n01 that adds a c2pa.ai-disclosure. The content is unchanged, but a model is now said to be involved in a way no source type declares.",
+    "validationState": "Trusted",
+    "classifierReason": "update manifest adds c2pa.ai-disclosure over ingredient 'untitled ingredient' -> created as digitalCapture",
+    "fixture": "u19_update_adds_model_disclosure.json"
+  },
+  {
+    "file": "files/unknown/u13_empty_with_unknown_component.jpg",
+    "expected": "unknown",
+    "description": "Blank canvas (empty) whose only content has no manifest or declared source type.",
+    "validationState": "Trusted",
+    "classifierReason": "created as empty; component: ingredient 'photo-unsigned.jpg' has no manifest or source type",
+    "fixture": "u13_empty_with_unknown_component.json"
+  },
+  {
+    "file": "files/invalid/x01_disclosure_missing_model_type.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "modelType must be a text string",
+    "fixture": "x01_disclosure_missing_model_type.json"
+  },
+  {
+    "file": "files/invalid/x02_disclosure_invalid_oversight_level.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "invalid humanOversightLevel",
+    "fixture": "x02_disclosure_invalid_oversight_level.json"
+  },
+  {
+    "file": "files/invalid/x03_disclosure_scalar_scientific_domain.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "invalid scientificDomain",
+    "fixture": "x03_disclosure_scalar_scientific_domain.json"
+  },
+  {
+    "file": "files/invalid/x04_disclosure_empty_scientific_domain.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "invalid scientificDomain",
+    "fixture": "x04_disclosure_empty_scientific_domain.json"
+  },
+  {
+    "file": "files/invalid/x05_disclosure_content_profile_not_a_map.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "contentProfile must be a map",
+    "fixture": "x05_disclosure_content_profile_not_a_map.json"
+  },
+  {
+    "file": "files/invalid/x06_disclosure_model_name_not_text.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "modelName must be a text string",
+    "fixture": "x06_disclosure_model_name_not_text.json"
+  },
+  {
+    "file": "files/invalid/x07_disclosure_null_scientific_domain.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "invalid scientificDomain null",
+    "fixture": "x07_disclosure_null_scientific_domain.json"
+  },
+  {
+    "file": "files/invalid/x08_disclosure_unknown_model_type.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "vocabulary: modelType nonsense",
+    "fixture": "x08_disclosure_unknown_model_type.json"
+  },
+  {
+    "file": "files/invalid/x09_disclosure_unknown_arxiv_category.jpg",
+    "expected": "ai",
+    "description": "Valid trainedAlgorithmicMedia file with a malformed c2pa.ai-disclosure (schema) or one outside the required vocabularies; for negative tests, not classification.",
+    "validationState": "Trusted",
+    "classifierReason": "created as trainedAlgorithmicMedia; c2pa.ai-disclosure present",
+    "expectedLint": "is not an arXiv category",
+    "fixture": "x09_disclosure_unknown_arxiv_category.json"
   }
 ]
